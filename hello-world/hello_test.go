@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"mathesukkj/gowithtests/utils"
 	"testing"
 )
@@ -26,4 +27,10 @@ func TestHello(t *testing.T) {
 		want := "Bonjour, Matheus!"
 		utils.AssertCorrectMessage(t, got, want)
 	})
+}
+
+func ExampleHello() {
+	str := Hello("Matheus", "PT-BR")
+	fmt.Println(str)
+	// Output: Oieee, Matheus!
 }
