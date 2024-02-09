@@ -10,7 +10,7 @@ func TestAdder(t *testing.T) {
 	got := Add(2, 2)
 	want := 4
 
-	utils.AssertCorrectMessage(t, got, want)
+	utils.AssertCorrectMessageNoParams(t, got, want)
 }
 
 func ExampleAdd() {

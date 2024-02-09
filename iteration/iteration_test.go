@@ -10,7 +10,7 @@ func TestRepeat(t *testing.T) {
 	got := Repeat("a", 4)
 	want := "aaaaa"
 
-	utils.AssertCorrectMessage(t, got, want)
+	utils.AssertCorrectMessageNoParams(t, got, want)
 }
 
 func BenchmarkRepeat(b *testing.B) {
