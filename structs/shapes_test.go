@@ -1,6 +1,7 @@
 package structs
 
 import (
+	"mathesukkj/gowithtests/utils"
 	"testing"
 )
 
@@ -10,9 +11,7 @@ func TestPerimeter(t *testing.T) {
 		got := Perimeter(rectangle)
 		want := 40.0
 
-		if got != want {
-			t.Errorf("got %g want %g", got, want)
-		}
+		utils.AssertCorrectMessageNoParams(t, got, want)
 	})
 }
 

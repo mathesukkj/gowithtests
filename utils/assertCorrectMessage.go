@@ -25,3 +25,20 @@ func AssertCorrectMessageSlice(t testing.TB, got, want []int) {
 		t.Errorf("got %v want %v", got, want)
 	}
 }
+
+func AssertNoError(t testing.TB, got error) {
+	t.Helper()
+	if got != nil {
+		t.Fatal("got an error but didn't want one")
+	}
+}
+
+func AssertError(t testing.TB, got, want error) {
+	t.Helper()
+	if got == nil {
+		t.Fatal("wanted an error but didnt get one")
+	}
+	if got.Error() != want.Error() {
+		t.Errorf("got %q, want %q", got, want)
+	}
+}
