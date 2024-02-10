@@ -21,3 +21,25 @@ func TestSearch(t *testing.T) {
 		utils.AssertError(t, got, ErrNotFound)
 	})
 }
+
+func TestAdd(t *testing.T) {
+	dictionary := Dictionary{"wall": "a wall that does wall things"}
+	t.Run("new word", func(t *testing.T) {
+		dictionary.Add("test", "testing")
+		want := "testing"
+
+		got, err := dictionary.Search("test")
+
+		utils.AssertNoError(t, err)
+		utils.AssertCorrectMessageNoParams(t, got, want)
+	})
+	t.Run("existing word", func(t *testing.T) {
+		word := "wall"
+		err := dictionary.Add("wall", "lmao")
+
+		got, _ := dictionary.Search(word)
+
+		utils.AssertError(t, err, ErrWordExists)
+		utils.AssertCorrectMessageNoParams(t, got, "a wall that does wall things")
+	})
+}
