@@ -2,6 +2,7 @@ package maps
 
 var ErrNotFound = DictionaryErr("could not find that word")
 var ErrWordExists = DictionaryErr("this word already exists in this dictionary")
+var ErrWordDoesNotExist = DictionaryErr("this word does not exist in this dictionary")
 
 type Dictionary map[string]string
 type DictionaryErr string
@@ -33,4 +34,23 @@ func (d Dictionary) Add(key, value string) error {
 	}
 
 	return nil
+}
+
+func (d Dictionary) Update(key, value string) error {
+	_, err := d.Search(key)
+
+	switch err {
+	case ErrNotFound:
+		return ErrWordDoesNotExist
+	case nil:
+		d[key] = value
+	default:
+		return err
+	}
+
+	return nil
+}
+
+func (d Dictionary) Delete(key string) {
+	delete(d, key)
 }
