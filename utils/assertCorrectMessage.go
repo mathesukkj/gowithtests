@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func AssertCorrectMessageNoParams[T string | int](t testing.TB, got, want T) {
+func AssertCorrectMessageNoParams[T string | int | float64](t testing.TB, got, want T) {
 	t.Helper()
 	if got != want {
 		t.Errorf("got %v want %v", got, want)
