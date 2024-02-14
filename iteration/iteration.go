@@ -1,4 +1,4 @@
-package iteration
+package main
 
 func Repeat(char string, iterationTimes int) string {
 	str := char

@@ -1,4 +1,4 @@
-package maps
+package main
 
 var ErrNotFound = DictionaryErr("could not find that word")
 var ErrWordExists = DictionaryErr("this word already exists in this dictionary")
