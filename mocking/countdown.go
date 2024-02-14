@@ -10,14 +10,25 @@ import (
 const countdownStart = 3
 const finalWord = "Go!"
 
-func Countdown(w io.Writer) {
+type Sleeper interface {
+	Sleep()
+}
+
+type DefaultSleeper struct{}
+
+func (d DefaultSleeper) Sleep() {
+	time.Sleep(time.Second)
+}
+
+func Countdown(w io.Writer, s Sleeper) {
 	for i := countdownStart; i > 0; i-- {
 		fmt.Fprintln(w, i)
-		time.Sleep(time.Second)
+		s.Sleep()
 	}
 	fmt.Fprint(w, finalWord)
 }
 
 func main() {
-	Countdown(os.Stdout)
+	sleeper := DefaultSleeper{}
+	Countdown(os.Stdout, sleeper)
 }
