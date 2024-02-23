@@ -42,4 +42,23 @@ func TestServer(t *testing.T) {
 			t.Error("store should have been cancelled")
 		}
 	})
+	t.Run("returns data from store", func(t *testing.T) {
+		data := "hello, world"
+		store := &SpyStore{response: data}
+		svr := Server(store)
+
+		request := httptest.NewRequest(http.MethodGet, "/", nil)
+		response := httptest.NewRecorder()
+
+		svr.ServeHTTP(response, request)
+
+		if response.Body.String() != data {
+			t.Errorf("got %s want %s", response.Body.String(), data)
+		}
+
+		if store.cancelled {
+			t.Error("store should not have been cancelled")
+		}
+
+	})
 }
