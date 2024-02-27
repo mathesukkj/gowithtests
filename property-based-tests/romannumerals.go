@@ -3,11 +3,15 @@ package main
 import "strings"
 
 func ConvertToRoman(num int) string {
-	var results strings.Builder
+	var result strings.Builder
 
-	for range num {
-		results.WriteString("I")
+	for i := num; i > 0; i-- {
+		if i == 4 {
+			result.WriteString("IV")
+			break
+		}
+		result.WriteString("I")
 	}
 
-	return results.String()
+	return result.String()
 }
