@@ -23,15 +23,23 @@ var romanNumerals = []RomanNumeral{
 	{1, "I"},
 }
 
-func ConvertToRoman(num int) string {
+func ConvertToRoman(arabic int) string {
 	var result strings.Builder
 
 	for _, numeral := range romanNumerals {
-		for num >= numeral.Value {
+		for arabic >= numeral.Value {
 			result.WriteString(numeral.Symbol)
-			num -= numeral.Value
+			arabic -= numeral.Value
 		}
 	}
 
 	return result.String()
+}
+
+func ConvertToArabic(roman string) int {
+	total := 0
+	for range roman {
+		total++
+	}
+	return total
 }
